@@ -12,7 +12,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-        let id = parseInt(req.param.id)
+        let id = parseInt(req.params.id)
         const snack = await Snack.getSnackById(id);
         res.status(200).json(snack)
     } catch(err) {

@@ -21,7 +21,7 @@ class Snack {
     }
 
     static async getSnackById(id) {
-        const [response] = await db.query(`SELECT * FROM snack WHERE snack_id=?`,[id]);
+        const [response] = await db.query(`SELECT * FROM snack WHERE snack_id=?;`,[id]);
         if(response.length !== 1) {
             throw new Error('Unable to get snack');
         }
