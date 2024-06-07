@@ -12,4 +12,5 @@ snackRouter.get('/', snackController.index);
 snackRouter.get('/:id', snackController.show);
 snackRouter.post('/', snackController.create);
 
+
 module.exports=snackRouter

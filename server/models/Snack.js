@@ -1,10 +1,11 @@
 const db = require('../db/connect');
 
 class Snack {
-    constructor({snack_id, snack_name, snack_description, healthy, vegetarian, votes, image_url}) {
+    constructor({snack_id, snack_name, snack_description, price, healthy, vegetarian, votes, image_url}) {
         this.snack_id = snack_id;
         this.snack_name = snack_name;
         this.snack_description = snack_description;
+        this.price= price;
         this.healthy = healthy;
         this.vegetarian = vegetarian;
         this.votes = votes;
@@ -29,11 +30,11 @@ class Snack {
     }
 
     static async create(data) {
-        const { snack_name, snack_description, healthy, vegetarian, votes, image_url } = data;
+        const { snack_name, snack_description, price, healthy, vegetarian, votes, image_url } = data;
         const [existingSnack] = await db.query(`SELECT snack_name FROM snack WHERE LOWER (snack_name)=?`, [snack_name]);
         if(existingSnack.length === 0) {
-            let [response] = await db.query(`INSERT into snack (snack_name, snack_description, healthy, vegetarian, votes, image_url) VALUES (?, ?, ?, ?, ?, ?);`, [snack_name, snack_description, healthy, vegetarian, votes, image_url]);
-            const id =response.insertId
+            let [response] = await db.query(`INSERT into snack (snack_name, snack_description, price, healthy, vegetarian, votes, image_url) VALUES (?, ?, ?, ?, ?, ?);`, [snack_name, snack_description, price, healthy, vegetarian, votes, image_url]);
+            const id = response.insertId
             const result = await Snack.getSnackById(parseInt(id));
             return result;
 
