@@ -1,3 +1,5 @@
+const db = require(./connect.js);
+
 db.query("SELECT * FROM snack;")
 .then((data) => {
     db.end();
