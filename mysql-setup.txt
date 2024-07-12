@@ -1,0 +1,38 @@
+CREATE DATABASE snacks_db;
+USE snacks_db;
+
+DROP TABLE IF EXISTS snack;
+CREATE TABLE IF NOT EXISTS snack (
+    snack_id INT AUTO_INCREMENT,
+    snack_name VARCHAR(100) NOT NULL,
+    snack_description VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    healthy BOOLEAN NOT NULL,
+    vegetarian BOOLEAN NOT NULL,
+    votes INT NOT NULL,
+    image_url VARCHAR(255),
+    PRIMARY KEY (snack_id)
+);
+INSERT INTO snack (snack_name, snack_description, price, healthy, vegetarian, votes, image_url)
+VALUES
+    ('Peanuts', 'Roasted & salted peanuts', 3.72, TRUE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/peanuts.jpg'),
+    ('Red velvet cake', 'Cake for cowards', 18, FALSE, FALSE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/red-velvet-cake.jpg'),
+    ('Chocolate cake', 'Rich and delicious', 11.50, FALSE, FALSE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/chocolate-cake.jpg'),
+    ('Skittles', 'Multicolored button-shaped candies', 1.25, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/skittles.jpg'),
+    ('Marshmallow', 'The least scary thing anyone could ever think of', 1.45, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/marshmallows.jpg'),
+    ('Grapes', 'Decadent if peeled', 2.50, TRUE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/grapes.jpg'),
+    ('Oreo milkshake', 'Refreshingly gritty', 4, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/oreo-milkshake.jpg'),
+    ('Banana milkshake', 'May contain real bananas', 4, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/banana-milkshake.jpg'),
+    ('Mango', 'Grows on trees', TRUE, TRUE, 0, 3.30, 'https://someprofoundname.github.io/fullsnack-images/images/mango.jpg'),
+    ('Victoria sponge', 'Basic', 4.50, FALSE, FALSE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/victoria-sponge.jpg'),
+    ('M&Ms', 'Multicolored button-shaped candies', 2.75, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/mandms.jpg'),
+    ('Smarties', 'Multicolored button-shaped candies', 1.50, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/smarties.jpg'),
+    ('Jammy dodgers', 'An eternal disappointment', 1.50, FALSE, TRUE, 0, 'https://someprofoundname.github.io/fullsnack-images/images/jammydodger.jpg');
+
+CREATE TABLE orders (
+	order_id INT PRIMARY KEY AUTO_INCREMENT,
+    snack_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY(snack_id) REFERENCES snack(snack_id)
+);
