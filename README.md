@@ -50,7 +50,7 @@ DATABASE = '<your MySQL database name>'
 
 Patches to the Orders database can be made using API testing programmes such as Postman
 
-# Contributors 
+## Contributors 
 
 [Collins](https://github.com/SomeProfoundName)
 [Faben](https://github.com/Feben-A)
